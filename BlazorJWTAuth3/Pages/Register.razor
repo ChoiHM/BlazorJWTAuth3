@@ -1,0 +1,33 @@
+﻿@page "/register"
+@using BlazorJWTAuth3.DTO;
+<PageTitle>Register</PageTitle>
+<h3>Register</h3>
+
+<EditForm Model="user" OnValidSubmit="HandleRegistration">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <lablel onformchange="email">Email</lablel>
+        <InputText id="email" @bind-Value="user.Email" class="form-control" />
+        <ValidationMessage For="@(()=> user.Email)"/>
+    </div>
+    <div class="mb-3">
+        <lablel onformchange="email">Password</lablel>
+        <InputText id="pw1" @bind-Value="user.Password" class="form-control" type="password" />
+        <ValidationMessage For="@(()=> user.Password)" />
+    </div>
+    <div class="mb-3">
+        <lablel onformchange="email">Confirm Password</lablel>
+        <InputText id="pw2" @bind-Value="user.ConfirmPassword" class="form-control" type="password" />
+        <ValidationMessage For="@(()=> user.ConfirmPassword)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</EditForm>
+
+@code {
+    UserRegister user = new UserRegister();
+
+    void HandleRegistration()
+    {
+        Console.WriteLine($"Register User with the Email {user.Email}");
+    }
+}
