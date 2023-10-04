@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorJWTAuth3", "BlazorJWTAuth3\BlazorJWTAuth3.csproj", "{4462B77D-0A3A-4DFF-8664-D8B1DCC7BCA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorJWTAuth3.DataAccess", "BlazorJWTAuth3.DataAccess\BlazorJWTAuth3.DataAccess.csproj", "{18BAA8E4-C6C1-4DEB-89E6-EF97850B0DA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorJWTAuth3.Core", "BlazorJWTAuth3.Core\BlazorJWTAuth3.Core.csproj", "{1B7105E0-32FD-499D-9BFB-4861B8D3A2B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4462B77D-0A3A-4DFF-8664-D8B1DCC7BCA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4462B77D-0A3A-4DFF-8664-D8B1DCC7BCA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4462B77D-0A3A-4DFF-8664-D8B1DCC7BCA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BAA8E4-C6C1-4DEB-89E6-EF97850B0DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BAA8E4-C6C1-4DEB-89E6-EF97850B0DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BAA8E4-C6C1-4DEB-89E6-EF97850B0DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BAA8E4-C6C1-4DEB-89E6-EF97850B0DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7105E0-32FD-499D-9BFB-4861B8D3A2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7105E0-32FD-499D-9BFB-4861B8D3A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7105E0-32FD-499D-9BFB-4861B8D3A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7105E0-32FD-499D-9BFB-4861B8D3A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

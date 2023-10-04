@@ -1,0 +1,18 @@
+﻿@page "/profile"
+@using BlazorJWTAuth3.Core.DTOs;
+@using BlazorJWTAuth3.DataAccess.Interface;
+@inject IAuthService _authService;
+@attribute [Authorize]
+
+<AuthorizeView>
+    <h3>@context.User.Identity.Name</h3>
+</AuthorizeView>
+
+@code {
+    UserChangePassword request = new UserChangePassword();
+    string message = string.Empty;
+
+    private async Task ChangePassword()
+    {
+    }
+}

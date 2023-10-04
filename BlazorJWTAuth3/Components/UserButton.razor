@@ -1,25 +1,25 @@
-﻿<div class="dropdown">
-    <button @onclick="ToggleUserMenu"
-        @onfocusout="HideUserMenu"
-        class="btn btn-secondary dropdown-toggle user-button">
-    <i class="oi oi-person"></i>
-    </button>
-    <div class="dropdown-menu dropdown-menu-left @UserMenuCssClass">
-        <a href="register" class="dropdown-item">Register</a>
-    </div>
-</div>
+﻿@using Blazored.SessionStorage;
+@inject ISessionStorageService _sessionStorage;
+@inject AuthenticationStateProvider _authStateProvider;
+@inject NavigationManager _navi;
+
+<AuthorizeView>
+    <Authorized>
+        <a href="profile">Profile</a>
+        <button @onclick="Logout">Logout</button>
+    </Authorized>
+    <NotAuthorized>
+        [@_navi.Uri]
+        <a href="register">Register</a>
+        <a href="login?returnUrl=@_navi.ToBaseRelativePath(_navi.Uri)">Login</a>
+    </NotAuthorized>
+</AuthorizeView>
 @code {
-    private bool showUserMenu = false;
-    private string UserMenuCssClass => showUserMenu ? "show-menu" : null;
 
-    private void ToggleUserMenu()
+    private async Task Logout()
     {
-        showUserMenu = !showUserMenu;
-    }
-
-    private async Task HideUserMenu()
-    {
-        await Task.Delay(200);
-        showUserMenu = false;
+        await _sessionStorage.RemoveItemAsync("authToken");
+        await _authStateProvider.GetAuthenticationStateAsync();
+        _navi.NavigateTo("/");
     }
 }

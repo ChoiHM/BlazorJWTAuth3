@@ -1,0 +1,59 @@
+﻿@page "/login"
+@using BlazorJWTAuth3.Core.DTOs;
+@using BlazorJWTAuth3.DataAccess.Interface;
+@using Blazored.SessionStorage;
+@using Microsoft.AspNetCore.WebUtilities;
+@inject IAuthService _authService;
+@inject ISessionStorageService _sessionStorage;
+@inject NavigationManager _navi;
+@inject AuthenticationStateProvider _authStateProvider;
+
+<h3>Login</h3>
+
+<EditForm Model="user" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <lablel onformchange="email">User Id</lablel>
+        <InputText id="email" @bind-Value="user.UserId" class="form-control" />
+        <ValidationMessage For="@(()=> user.UserId)" />
+    </div>
+    <div class="mb-3">
+        <lablel onformchange="email">Password</lablel>
+        <InputText id="pw1" @bind-Value="user.Password" class="form-control" type="password" />
+        <ValidationMessage For="@(()=> user.Password)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+ErrorMSg : @msg
+
+@code {
+
+    private UserLogin user = new UserLogin();
+    private string msg = string.Empty;
+    private string returnUrl = string.Empty;
+    protected override void OnInitialized()
+    {
+        var uri = _navi.ToAbsoluteUri(_navi.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+    }
+    private async Task HandleLogin()
+    {
+        var response = await _authService.Login(user.UserId, user.Password);
+        if (!response.Success)
+        {
+            msg = response.Message;
+            StateHasChanged();
+        }
+        else
+        {
+            msg = string.Empty;
+            await _sessionStorage.SetItemAsync("authToken", response.Data);
+            await _authStateProvider.GetAuthenticationStateAsync();
+            _navi.NavigateTo(returnUrl);
+        }
+
+    }
+}
